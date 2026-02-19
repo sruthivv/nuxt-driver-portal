@@ -25,7 +25,7 @@
          <UButton
             color="secondary"
             class="h-8"
-            to=""
+            @click="goToDetails"
           >
             View
           </UButton>
@@ -77,6 +77,7 @@ const props = defineProps({
   } 
 })
 const emit = defineEmits(["updated"])
+const router = useRouter();
 
 const items = ref([
   {
@@ -130,5 +131,9 @@ const handleAction = async (action: "accept" | "reject") => {
     emit("updated")
 
   } catch (err) {}
+}
+
+const goToDetails = () => {
+  router.push(`/jobs/${props.job.bookingKey}`)
 }
 </script>
